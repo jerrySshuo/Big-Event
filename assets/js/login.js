@@ -56,4 +56,43 @@ $(function () {
             }
         })
     })
+
+    // 登录的ajax代码
+    $('#loginForm').on('submit', function (e) {
+        e.preventDefault();
+
+        let data = $(this).serialize();
+
+        $.ajax({
+            type: "POST",
+            url: '/api/login',
+            data,
+            success: function (res) {
+                if (res.status !== 0) {
+                    return layer.msg('登录失败');
+                }
+
+                // 登录成功
+                // 1. 提示框 ==> layer.msg
+                /* layer.msg("登录成功，即将去后台主页");
+                // 2. 需要将token存储到本地中(localStorage)
+                // res.token 本身就是字符串，可以直接存储
+                localStorage.setItem("token", res.token);
+                // 3. 跳转页面操作
+                location.href = "index.html"; */
+
+                // 延时效果
+                localStorage.setItem('token', res.token);
+                layer.msg(
+                    '登录成功，即将去后台主页',
+                    {
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    },
+                    function () {
+                        // 关闭后做的事情 ==> 跳转页面
+                        location.href = 'index.html';
+                    });
+            }
+        })
+    })
 })
