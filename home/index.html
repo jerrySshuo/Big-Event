@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="/assets/fonts/iconfont.css">
     <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
     <link rel="stylesheet" href="/assets/css/index.css">
+    <script>
+        // 校验：校验token是否存在
+        let token = localStorage.getItem('token');
+        if (!token) {
+            // 没有token信息
+            location.href = 'login.html';
+        }
+    </script>
 </head>
 
 <body class="layui-layout-body">
@@ -58,9 +66,13 @@
                         <a href="javascript:;">
                             <span class="iconfont icon-user"></span>个人中心</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i> 基本资料</a></dd>
-                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i> 更换头像</a></dd>
-                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i> 重置密码</a></dd>
+                            <dd><a href="/user/user_info.html" target="layBody"><i
+                                        class="layui-icon layui-icon-app"></i>
+                                    基本资料</a></dd>
+                            <dd><a href="/user/user_avatar.html" target="layBody"><i
+                                        class="layui-icon layui-icon-app"></i> 更换头像</a></dd>
+                            <dd><a href="/user/user_pwd.html" target="layBody"><i class="layui-icon layui-icon-app"></i>
+                                    重置密码</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -69,7 +81,8 @@
 
         <div class="layui-body">
             <!-- 内容主体区域 -->
-            <iframe src="/home/dashboard.html" frameborder="0" name="layBody"></iframe>
+            <!-- <iframe src="/home/dashboard.html" frameborder="0" name="layBody"></iframe> -->
+            <iframe src="/user/user_avatar.html" frameborder="0" name="layBody"></iframe>
         </div>
 
         <div class="layui-footer">
